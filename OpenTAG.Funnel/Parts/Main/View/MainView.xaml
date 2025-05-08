@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:OpenTAG.Funnel.Parts.Main.ViewModel"
+             x:Class="OpenTAG.Funnel.Parts.Main.View.MainView"
+             x:DataType="viewModels:ScanViewModel">
+    <ContentPage.Content>
+        <Grid>
+            <VerticalStackLayout 
+                VerticalOptions="Center" 
+                Padding="20" 
+                Spacing="20">
+                <Label
+                    Text="Enter/Scan your openTAG ID (GUID)"
+                    FontSize="20" />
+
+                <Entry
+                    Placeholder="openTAG ID"
+                    Text="{Binding ScannedId}" />
+
+                <Label
+                    Text="Invalid openTAG Format"
+                    TextColor="Red"
+                    IsVisible="{Binding ScannedId, Converter={StaticResource StringNotEmptyConverter}, Mode=OneWay}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding IsScannedIdValid}"
+                            Value="True">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <Button
+                    Text="Load ID"
+                    Command="{Binding ScanCommand}"
+                    IsEnabled="{Binding IsScannedIdValid}" />
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsLoading}"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+                
+            </VerticalStackLayout>
+            
+            <Button
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Text="Reset"
+                Background="{x:Null}"
+                BackgroundColor="Transparent"
+                TextColor="Black"
+                Command="{Binding ResetCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

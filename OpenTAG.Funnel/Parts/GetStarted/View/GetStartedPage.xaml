@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:OpenTAG.Funnel.Parts.GetStarted.ViewModels"
+    x:Class="OpenTAG.Funnel.Parts.GetStarted.View.GetStartedPage"
+    x:DataType="viewModels:InitViewModel">
+
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Spacing="20"
+        Padding="20">
+        <Label
+            Text="Welcome to the OpenTAG Funnel"
+            FontSize="24"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="We need to set up a few things first"
+            FontSize="16"
+            HorizontalOptions="Center" />
+
+        <Button
+            Text="Get Started"
+            Command="{Binding NavigateToJwtPageCommand}" HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
